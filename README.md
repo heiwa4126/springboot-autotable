@@ -9,7 +9,7 @@ JPA HibernateでSQLのテーブルを自動で作ったり、初期データを追加したりする。
 - [Spring Boot 「使い方」ガイド - 9. データベースの初期化](https://spring.pleiades.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization) - ちょっと古いかも。でも日本語
 
 
-# 最低限の設定
+# 最低限の設定 (tag : v0.0.0)
 
 application.properties
 
@@ -25,8 +25,34 @@ spring.jpa.defer-datasource-initialization=true
 spring.sql.init.encoding=UTF-8
 ```
 
-で resourcesの下(というかCLASSPATH：のどこか)に`data.sql`を置く。
+で resourcesの下(というかCLASSPATH:のどこか)に`data.sql`を置く。
 
 これでモデルに従ったテーブルができ、そこにdata.sqlが入る。ああめんどくさい。
 
 確認は H2 console が ONなら http://localhost:8080/h2-console/ で `SELECT * FROM WORD;`
+
+
+# 永続化
+
+H2をメモリからファイルにしてみる。
+
+application.properties
+
+```
+# spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+spring.datasource.url=jdbc:h2:C:\\H2\\autotable
+```
+
+(Windowsでやってます。先に`md C:\H2`しとくこと。あとYAMLだとバックスラッシュは1つだと思う)
+
+テーブルはできるけどデータが入らない。なぜだ。以下を追加してみる。
+
+```
+spring.sql.init.mode=always
+```
+
+初期化はされるけど、Spring Bootを再起動するとエラーになる(あたりまえ)。ここから先はSpring Batchを使えということか。
+とりあえずSQLのUPSERT的に対処してみる。H2だと`INSERT INTO`を`MERGE INTO`で。
+
+
+
