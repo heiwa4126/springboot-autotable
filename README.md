@@ -32,7 +32,7 @@ spring.sql.init.encoding=UTF-8
 確認は H2 console が ONなら http://localhost:8080/h2-console/ で `SELECT * FROM WORD;`
 
 
-# 永続化  (tag : v0.0.1)
+# 永続化 (tag : v0.0.1)
 
 H2をメモリからファイルにしてみる。
 
@@ -52,7 +52,7 @@ spring.sql.init.mode=always
 ```
 
 初期化はされるけど、Spring Bootを再起動するとエラーになる(あたりまえ)。ここから先はSpring Batchを使えということか。
-とりあえずSQLのUPSERT的に対処してみる。H2だと`INSERT INTO`を`MERGE INTO`で。
+とりあえずSQLのUPSERT的に対処してみる。H2だと `INSERT INTO` を [MERGE INTO](http://www.h2database.com/html/commands.html#merge_into) で。
 これだと値が上書きになる & H2以外ではだめという欠点はあるけど、とりあえず回避。
 
 サービスとレポジトリを追加して、curlで`select *`が出てくるようにする。
@@ -60,4 +60,16 @@ spring.sql.init.mode=always
 ...テーマと関係ないコードが増えたけど
 `curl localhost:8080/list -s`
 で一覧がJSONで帰るようになった。
+
+
+# 外部DB (tag : v0.0.2)
+
+PostgreSQLにしてみる。`MERGE INTO`はない。
+`INSERT INTO ... ON CONFLICT ON CONSTRAINT (column_name) DO NOTHONG;`にする。、
+今回はIDだけだからこんなもの。
+
+あとは `spring.datasource.`を書き換えて終わり。
+
+
+
 
