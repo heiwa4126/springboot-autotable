@@ -64,11 +64,13 @@ spring.sql.init.mode=always
 
 # 外部DB (tag : v0.0.2)
 
+** PostgreSQLの設定は省略 ***
+
 PostgreSQLにしてみる。`MERGE INTO`はない。
 `INSERT INTO ... ON CONFLICT ON CONSTRAINT (column_name) DO NOTHONG;`にする。、
 今回はIDだけだからこんなもの。
 
-あとは `spring.datasource.`を書き換えて終わり。
+あとは `spring.datasource.*`を書き換えて終わり。
 
 
 
