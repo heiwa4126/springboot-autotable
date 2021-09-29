@@ -32,7 +32,7 @@ spring.sql.init.encoding=UTF-8
 確認は H2 console が ONなら http://localhost:8080/h2-console/ で `SELECT * FROM WORD;`
 
 
-# 永続化
+# 永続化  (tag : v0.0.1)
 
 H2をメモリからファイルにしてみる。
 
