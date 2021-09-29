@@ -11,6 +11,6 @@ public class IndexController {
 	@RequestMapping("/")
 	public String index() {
 		log.info("/");
-		return "Greetings from Spring Boot!!\n";
+		return "Greetings from Spring Boot!\n";
 	}
 }
