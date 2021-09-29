@@ -28,3 +28,5 @@ spring.sql.init.encoding=UTF-8
 で resourcesの下(というかCLASSPATH：のどこか)に`data.sql`を置く。
 
 これでモデルに従ったテーブルができ、そこにdata.sqlが入る。ああめんどくさい。
+
+確認は H2 console が ONなら http://localhost:8080/h2-console/ で `SELECT * FROM WORD;`
