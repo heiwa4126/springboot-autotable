@@ -53,6 +53,11 @@ spring.sql.init.mode=always
 
 初期化はされるけど、Spring Bootを再起動するとエラーになる(あたりまえ)。ここから先はSpring Batchを使えということか。
 とりあえずSQLのUPSERT的に対処してみる。H2だと`INSERT INTO`を`MERGE INTO`で。
+これだと値が上書きになる & H2以外ではだめという欠点はあるけど、とりあえず回避。
 
+サービスとレポジトリを追加して、curlで`select *`が出てくるようにする。
 
+...テーマと関係ないコードが増えたけど
+`curl localhost:8080/list -s`
+で一覧がJSONで帰るようになった。
 

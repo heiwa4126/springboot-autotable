@@ -1,9 +1,7 @@
-package com.example.heiwa4126.model;
+package com.example.heiwa4126.domain.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name = "words")
 public class Word {
 	@Id
 	private String english;
