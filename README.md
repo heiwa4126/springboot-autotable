@@ -1,4 +1,4 @@
-# autotable
+# springboot-autotable
 
 JPA HibernateでSQLのテーブルを自動で作ったり、初期データを追加したりする。
 
@@ -73,5 +73,10 @@ PostgreSQLにしてみる。`MERGE INTO`はない。
 あとは `spring.datasource.*`を書き換えて終わり。
 
 
+# プロファイルで切り替えられるようにする (tag : v0.0.3)
 
+* dev - 最低限の設定(H2:mem)
+* h2file - H2:File
+* pg - PostgreSQL
 
+みたいにする。
